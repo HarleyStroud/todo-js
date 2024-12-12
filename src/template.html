@@ -5,9 +5,36 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Todo App</title>
 	</head>
-	<body>
+    <body>
         <div id="container">
-            <div id="project_display"></div>
+            <button id="new_todo_button">New Todo</button>
+
+            <h3>Projects</h3>
+            <div id="main_project_container"></div>
+
+
+            <dialog id="new_todo_dialog">
+                <p>New Todo</p>
+                <form id="new_todo_form" method="dialog">
+                    <p>
+                        <label for="todo_title_input">Title</label>
+                        <input class="new_todo_input" id="todo_title_input" type="text" placeholder="Title">
+                    </p>
+                    <p>
+                        <label for="todo_description_input">Description</label>
+                        <input class="new_todo_input" id="todo_description_input" type="text" placeholder="Description">
+                    </p>
+                    <p>
+                        <label for="todo_due_date_input">Due Date</label>
+                        <input class="new_todo_input" id="todo_due_date_input" type="date" placeholder="DD/MM/YYYY">
+                    </p>
+                    <p>
+                        <label for="todo_priority_input">Priority</label>
+                        <input class="new_todo_input" id="todo_priority_input" type="number" placeholder="0">
+                    </p>
+                    <button>Add</button>
+                </form>
+            </dialog>
         </div>
     </body>
 </html>
