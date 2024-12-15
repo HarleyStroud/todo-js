@@ -1,18 +1,23 @@
 
 * {
-    margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
 
 html, body {
     height: 100%;
-    margin: 0px;
+
 }
 
 
 #container {
     padding: 0.75rem;
+}
+
+
+#new_todo_dialog {
+    padding: 1.5rem;
+    border: solid 1px #e6e6e6;
 }
 
 

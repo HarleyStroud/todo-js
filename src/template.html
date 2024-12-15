@@ -14,25 +14,21 @@
 
 
             <dialog id="new_todo_dialog">
-                <p>New Todo</p>
-                <form id="new_todo_form" method="dialog">
+                <form method="dialog" id="new_todo_form">
                     <p>
-                        <label for="todo_title_input">Title</label>
-                        <input class="new_todo_input" id="todo_title_input" type="text" placeholder="Title">
+                        <input autofocus class="new_todo_input" id="todo_title_input" type="text" placeholder="Title">
                     </p>
                     <p>
-                        <label for="todo_description_input">Description</label>
                         <input class="new_todo_input" id="todo_description_input" type="text" placeholder="Description">
                     </p>
                     <p>
-                        <label for="todo_due_date_input">Due Date</label>
-                        <input class="new_todo_input" id="todo_due_date_input" type="date" placeholder="DD/MM/YYYY">
+                        <input class="new_todo_input" id="todo_due_date_input" type="date" placeholder="Due date">
                     </p>
                     <p>
-                        <label for="todo_priority_input">Priority</label>
-                        <input class="new_todo_input" id="todo_priority_input" type="number" placeholder="0">
+                        <input class="new_todo_input" id="todo_priority_input" type="number" placeholder="Priority">
                     </p>
-                    <button>Add</button>
+                    <button id="button_add_new_todo">Add</button>
+                    <button id="button_cancel_new_todo">Cancel</button>
                 </form>
             </dialog>
         </div>
