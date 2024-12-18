@@ -1,5 +1,5 @@
 // Structure of a Project, which is a collection of todo items.
-export default function Project(title = "Default Project") {
+export default function Project(title = "Default Project", description = "") {
     const todoList = [];
 
     const addTodoItem = (todoItem) => {
@@ -15,5 +15,5 @@ export default function Project(title = "Default Project") {
     }
 
 
-    return {title, addTodoItem, getTodoList};
+    return {title, description, addTodoItem, getTodoList};
 }

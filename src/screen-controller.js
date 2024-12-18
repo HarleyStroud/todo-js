@@ -1,15 +1,12 @@
 import userRepository from "./user-repository";
+import showProjectDialog from "./project-dialog";
+import showTaskDialog from "./task-dialog";
 
 export default function ScreenController() {
 
-    const newTodoButton = document.querySelector("#new_todo_button");
-    const newTodoDialog = document.querySelector("#new_todo_dialog");
-    const newTodoForm = document.querySelector("#new_todo_form");
-    
-    const buttonAddNewTodo = document.querySelector("#button_add_new_todo");
-    const buttonCancelNewTodo = document.querySelector("#button_cancel_new_todo");
-    
-
+    const buttonCreateProject = document.querySelector("#button_create_project");
+    const newTodoButton = document.querySelector("#new_todo_button");    
+   
     const projectList = userRepository.getProjects();
     const updateDisplay = () => {
         const projectDisplay = document.querySelector("#main_project_container");
@@ -24,6 +21,15 @@ export default function ScreenController() {
             currentProjectTitleDisplay.textContent = `Project Title: ${currentProject.title}`;
             currentProjectTitleDisplay.classList.add("project_title");
             projectContainer.appendChild(currentProjectTitleDisplay);
+
+            const currentProjectAddTaskButton = document.createElement("button");
+            currentProjectAddTaskButton.textContent = "Add New Task";
+        
+            currentProjectAddTaskButton.addEventListener("click", () => {
+                showTaskDialog(currentProject.title);
+            });
+
+            projectContainer.appendChild(currentProjectAddTaskButton);
     
             const todoList = currentProject.getTodoList();
             for(let todoCount = 0; todoCount < todoList.length; todoCount++) {
@@ -37,6 +43,11 @@ export default function ScreenController() {
                 todoCheckbox.id = `#todo_${todoCount}`;
                 todoCheckbox.textContent = currentTodoItem.title;
                 todoCheckbox.checked = currentTodoItem.status;
+
+                todoCheckbox.addEventListener("change", () => {
+                    currentTodoItem.toggleStatus();
+                });
+
                 todoContainer.appendChild(todoCheckbox);
     
                 const checkboxLabel = document.createElement("label");
@@ -45,53 +56,26 @@ export default function ScreenController() {
                 checkboxLabel.classList.add("todo_property");
                 todoContainer.appendChild(checkboxLabel);
     
-                const descriptionParagraph = document.createElement("p");
-                descriptionParagraph.textContent = currentTodoItem.description;
-                descriptionParagraph.classList.add("todo_property");
-                todoContainer.appendChild(descriptionParagraph);
-    
                 const dueDateParaGraph = document.createElement("p");
                 dueDateParaGraph.textContent = currentTodoItem.dueDate;
                 dueDateParaGraph.classList.add("todo_property");
                 todoContainer.appendChild(dueDateParaGraph);
-    
-                const priorityParagraph = document.createElement("p");
-                priorityParagraph.textContent = currentTodoItem.priority;
-                priorityParagraph.classList.add("todo_property");
-                todoContainer.appendChild(priorityParagraph);
     
                 projectContainer.appendChild(todoContainer);
             }
     
             projectDisplay.appendChild(projectContainer);
         }
-    }
+    };
+
+
+    buttonCreateProject.addEventListener("click", () => {
+        showProjectDialog();
+    });
+
 
     newTodoButton.addEventListener("click", () => {
-        newTodoDialog.show();
-    });
-    
-    
-    newTodoForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-    });
-
-
-    buttonAddNewTodo.addEventListener("click", (event) => {
-        const todoTitle = document.querySelector("#todo_title_input").value;
-        const todoDescription = document.querySelector("#todo_description_input").value;
-        const todoDueDate = document.querySelector("#todo_due_date_input").value;
-        const priority = document.querySelector("#todo_priority_input").value;
-        userRepository.createNewTask(todoTitle, todoDescription, todoDueDate, priority);
-    
-        //const newTodo = TodoItem(todoTitle, todoDescription, todoDueDate, priority);
-
-        updateDisplay();
-        newTodoDialog.close();
-    });
-    
-    buttonCancelNewTodo.addEventListener("click", (event) => {
-        newTodoDialog.close(); 
+        showTaskDialog();
     });
 
     return {updateDisplay};

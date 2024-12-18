@@ -6,7 +6,6 @@
 
 html, body {
     height: 100%;
-
 }
 
 
@@ -23,7 +22,8 @@ html, body {
 
 #main_project_container {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
     border: solid 1px;
 }
 
@@ -48,7 +48,7 @@ html, body {
 
 .todo_container {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     width: 550px;
     padding: 0.5rem;

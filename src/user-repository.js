@@ -15,17 +15,18 @@ const getProjects = () => {
 
 const getTasks = () => {
     return projects[0].getTodoList();
-}
+};
 
 const createNewProject = (newProject) => {
     projects.push(newProject);
 };
 
 
-const createNewTask = (todoTitle, todoDescription, todoDueDate, priority) => {
+const createNewTask = (todoTitle, todoDescription, todoDueDate, priority, projectTitle = "Default Project") => {
     // Todo: add new task item to the correct project.
     const newTodoItem = TodoItem(todoTitle, todoDescription, todoDueDate, priority);
-    projects[0].addTodoItem(newTodoItem);
+    const selectedProject = projects.filter((project) => project.title === projectTitle);
+    selectedProject[0].addTodoItem(newTodoItem);
 };
 
 

@@ -8,9 +8,24 @@
     <body>
         <div id="container">
             <button id="new_todo_button">New Todo</button>
+            <button id="button_create_project">New Project</button>
 
             <h3>Projects</h3>
             <div id="main_project_container"></div>
+
+
+            <dialog id="create_project_dialog">
+                <form method="dialog" id="create_project_form">
+                    <p>
+                        <input autofocus class="new_todo_input" id="project_title_input" type="text" placeholder="Title">
+                    </p>
+                    <p>
+                        <input class="new_todo_input" id="project_description_input" type="text" placeholder="Description">
+                    </p>
+                    <button id="button_add_new_project">Add</button>
+                    <button id="button_cancel_new_project">Cancel</button>
+                </form>
+            </dialog>
 
 
             <dialog id="new_todo_dialog">
