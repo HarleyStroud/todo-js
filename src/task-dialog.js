@@ -1,7 +1,7 @@
 import userRepository from "./user-repository";
 import ScreenController from "./screen-controller";
 
-export default function showTaskDialog(project = "Default project") {
+export default function showTaskDialog(project = "Default Project") {
     const screenController = ScreenController();
     const newTodoDialog = document.querySelector("#new_todo_dialog");
     const buttonAddNewTodo = document.querySelector("#button_add_new_todo");

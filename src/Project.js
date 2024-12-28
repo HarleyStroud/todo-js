@@ -4,15 +4,15 @@ export default function Project(title = "Default Project", description = "") {
 
     const addTodoItem = (todoItem) => {
         todoList.push(todoItem);
-    }
+    };
 
     const setTodoList = (newTodoList) => {
         todoList = newTodoList;
-    }
+    };
 
     const getTodoList = () => {
         return todoList;
-    }
+    };
 
 
     return {title, description, addTodoItem, getTodoList};
