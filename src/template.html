@@ -40,8 +40,16 @@
                         <input class="new_todo_input" id="todo_due_date_input" type="date" placeholder="Due date">
                     </p>
                     <p>
-                        <input class="new_todo_input" id="todo_priority_input" type="number" placeholder="Priority">
+                        <label for="priority_drop_down">Priority</label>
+                        <select name="Priority" class="new_todo_input" id="priority_drop_down">
+                            <option value="1" id="priority_1">1</option>
+                            <option value="2" id="priority_2">2</option>
+                            <option value="3" id="priority_3">3</option>
+                            <option value="4" id="priority_4">4</option>
+                            <option value="5" id="priority_5">5</option>
+                        </select>
                     </p>
+
                     <button id="button_add_new_todo">Add</button>
                     <button id="button_cancel_new_todo">Cancel</button>
                 </form>

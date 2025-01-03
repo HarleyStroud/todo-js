@@ -13,7 +13,7 @@ export default function showTaskDialog(project = "Default Project") {
         const todoTitle = document.querySelector("#todo_title_input").value;
         const todoDescription = document.querySelector("#todo_description_input").value;
         const todoDueDate = document.querySelector("#todo_due_date_input").value;
-        const priority = document.querySelector("#todo_priority_input").value;
+        const priority = document.querySelector("#priority_drop_down").value;
         userRepository.createNewTask(todoTitle, todoDescription, todoDueDate, priority, project);
 
         screenController.updateDisplay();

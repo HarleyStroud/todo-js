@@ -20,7 +20,7 @@ export default function ScreenController() {
             const projectHeader = document.createElement("div");
             projectHeader.classList.add("project_header");
     
-            const currentProjectTitleDisplay = document.createElement("p");
+            const currentProjectTitleDisplay = document.createElement("h5");
             currentProjectTitleDisplay.textContent = `${currentProject.title}`;
             currentProjectTitleDisplay.classList.add("project_title");
             projectHeader.appendChild(currentProjectTitleDisplay);
