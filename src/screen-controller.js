@@ -3,10 +3,10 @@ import showProjectDialog from "./project-dialog";
 import showTaskDialog from "./task-dialog";
 
 export default function ScreenController() {
-
     const buttonCreateProject = document.querySelector("#button_create_project");
-    const newTodoButton = document.querySelector("#new_todo_button");    
-   
+    const newTodoButton = document.querySelector("#new_todo_button");
+    let selectedTask = "";
+
     const projectList = userRepository.getProjects();
     const updateDisplay = () => {
         const projectDisplay = document.querySelector("#main_project_container");
@@ -44,11 +44,17 @@ export default function ScreenController() {
 
 
     function displayTasks(todoList, projectContainer) {
+        console.log(todoList);
         for(let todoCount = 0; todoCount < todoList.length; todoCount++) {
+            const currentTodoItem = todoList[todoCount];
+
             const todoContainer = document.createElement("div");
             todoContainer.classList.add("todo_container");
+            todoContainer.addEventListener("click", () => {
+                selectedTask = currentTodoItem;
+                handleTaskClicked(currentTodoItem);
+            });
     
-            const currentTodoItem = todoList[todoCount];
             const todoCheckbox = document.createElement("input");
             todoCheckbox.type = "checkbox";
             todoCheckbox.classList.add("todo_property");
@@ -64,18 +70,46 @@ export default function ScreenController() {
     
             const checkboxLabel = document.createElement("label");
             checkboxLabel.setAttribute("for", `${todoCheckbox.id}`);
-            checkboxLabel.textContent = currentTodoItem.title;
+            checkboxLabel.textContent = currentTodoItem.getTitle();
             checkboxLabel.classList.add("todo_property");
             todoContainer.appendChild(checkboxLabel);
     
             const dueDateParaGraph = document.createElement("p");
-            dueDateParaGraph.textContent = currentTodoItem.dueDate;
+            dueDateParaGraph.textContent = currentTodoItem.getDueDate();
             dueDateParaGraph.classList.add("todo_property");
             todoContainer.appendChild(dueDateParaGraph);
     
             projectContainer.appendChild(todoContainer);
         }
     }
+
+
+    const editTaskDialog = document.querySelector("#edit_task_dialog");
+    const editTitleInput = document.querySelector("#edit_todo_title_input");
+    const editDescriptionInput = document.querySelector("#edit_todo_description_input");
+    const editDueDateInput = document.querySelector("#edit_todo_due_date_input");
+    const editPriorityDropDown = document.querySelector("#edit_priority_drop_down");
+
+    function handleTaskClicked(task) {
+        console.log(task);
+        editTitleInput.value = task.getTitle();
+        editDescriptionInput.value = task.getDescription();
+        editDueDateInput.value = task.getDueDate();
+        editPriorityDropDown.value = task.getPriority();
+        editTaskDialog.show();
+    }
+
+
+    const buttonSaveTask = document.querySelector("#button_save_task");
+    buttonSaveTask.addEventListener("click", () => {
+        selectedTask.update(editTitleInput.value, editDescriptionInput.value, editDueDateInput.value, editPriorityDropDown.value);
+        updateDisplay();
+    });
+
+    const buttonCancelEditTask = document.querySelector("#button_cancel_edit_task");
+    buttonCancelEditTask.addEventListener("click", () => {
+        
+    });
 
 
     buttonCreateProject.addEventListener("click", () => {

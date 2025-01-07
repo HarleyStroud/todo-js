@@ -13,7 +13,7 @@
             <h3>Projects</h3>
             <div id="main_project_container"></div>
 
-
+            <!-- Dialog displayed when creating a new project -->
             <dialog id="create_project_dialog">
                 <form method="dialog" id="create_project_form">
                     <p>
@@ -27,7 +27,7 @@
                 </form>
             </dialog>
 
-
+            <!-- Dialog displayed when creating a new task -->
             <dialog id="new_todo_dialog">
                 <form method="dialog" id="new_todo_form">
                     <p>
@@ -52,6 +52,34 @@
 
                     <button id="button_add_new_todo">Add</button>
                     <button id="button_cancel_new_todo">Cancel</button>
+                </form>
+            </dialog>
+
+            <!-- Dialog displayed when editing an existing task -->
+            <dialog id="edit_task_dialog">
+                <form method="dialog" id="edit_task_form">
+                    <p>
+                        <input autofocus class="new_todo_input" id="edit_todo_title_input" type="text" placeholder="Title">
+                    </p>
+                    <p>
+                        <input class="new_todo_input" id="edit_todo_description_input" type="text" placeholder="Description">
+                    </p>
+                    <p>
+                        <input class="new_todo_input" id="edit_todo_due_date_input" type="date" placeholder="Due date">
+                    </p>
+                    <p>
+                        <label for="edit_priority_drop_down">Priority</label>
+                        <select name="Priority" class="new_todo_input" id="edit_priority_drop_down">
+                            <option value="1" id="edit_priority_1">1</option>
+                            <option value="2" id="edit_priority_2">2</option>
+                            <option value="3" id="edit_priority_3">3</option>
+                            <option value="4" id="edit_priority_4">4</option>
+                            <option value="5" id="edit_priority_5">5</option>
+                        </select>
+                    </p>
+
+                    <button id="button_save_task">Save</button>
+                    <button id="button_cancel_edit_task">Cancel</button>
                 </form>
             </dialog>
         </div>
