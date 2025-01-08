@@ -14,6 +14,7 @@ export default function TodoItem(title, description, dueDate, priority = 0, stat
         title = newTitle;
         description = newDescription;
         dueDate = newDueDate;
+        priority = newPriority;
     };
 
     return {getTitle, getDescription, getDueDate, getPriority, getStatus, toggleStatus, update};
