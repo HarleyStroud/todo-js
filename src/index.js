@@ -1,5 +1,4 @@
-import ScreenController from "./screen-controller";
+import updateDisplay from "./screen-controller";
 import "./styles.css";
 
-const screenController = ScreenController();
-screenController.updateDisplay();
+updateDisplay();

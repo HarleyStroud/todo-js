@@ -1,12 +1,11 @@
 import Project from "./Project";
 import userRepository from "./user-repository";
-import ScreenController from "./screen-controller";
+import updateDisplay from "./screen-controller";
 
 export default function showProjectDialog() {
     const dialogCreateProject = document.querySelector("#create_project_dialog");
     const buttonCreateProject = document.querySelector("#button_add_new_project");
     const buttonCancelProject = document.querySelector("#button_cancel_new_project");
-    const screenController = ScreenController();
 
     dialogCreateProject.show();
 
@@ -16,7 +15,7 @@ export default function showProjectDialog() {
 
         const newProject = Project(projectTitleInput, projectDescriptionInput);
         userRepository.createNewProject(newProject);
-        screenController.updateDisplay();
+        updateDisplay();
         dialogCreateProject.close();
     });
 
