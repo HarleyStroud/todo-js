@@ -17,14 +17,14 @@ export default function updateDisplay() {
         const projectHeader = document.createElement("div");
         projectHeader.classList.add("project_header");
 
-        const currentProjectTitleDisplay = document.createElement("h5");
+        const currentProjectTitleDisplay = document.createElement("h3");
         currentProjectTitleDisplay.textContent = `${currentProject.title}`;
         currentProjectTitleDisplay.classList.add("project_title");
         projectHeader.appendChild(currentProjectTitleDisplay);
 
         const currentProjectAddTaskButton = document.createElement("button");
         currentProjectAddTaskButton.classList.add("project_new_task_button");
-        currentProjectAddTaskButton.textContent = "+";
+        currentProjectAddTaskButton.textContent = "Add task";
     
         currentProjectAddTaskButton.addEventListener("click", () => {
             showTaskDialog(currentProject.title);
@@ -54,7 +54,7 @@ function displayTasks(todoList, projectContainer) {
         const todoCheckbox = document.createElement("input");
         todoCheckbox.type = "checkbox";
         todoCheckbox.classList.add("todo_property");
-        todoCheckbox.id = `#todo_${todoCount}`;
+        todoCheckbox.id = `todo_${todoCount}`;
         todoCheckbox.textContent = currentTodoItem.title;
         todoCheckbox.checked = currentTodoItem.status;
 
@@ -70,10 +70,11 @@ function displayTasks(todoList, projectContainer) {
         checkboxLabel.classList.add("todo_property");
         todoContainer.appendChild(checkboxLabel);
 
-        const dueDateParaGraph = document.createElement("p");
-        dueDateParaGraph.textContent = currentTodoItem.getDueDate();
-        dueDateParaGraph.classList.add("todo_property");
-        todoContainer.appendChild(dueDateParaGraph);
+        const dueDateParagraph = document.createElement("p");
+        dueDateParagraph.textContent = currentTodoItem.getDueDate();
+        dueDateParagraph.id = "task_due_date";
+        dueDateParagraph.classList.add("todo_property");
+        todoContainer.appendChild(dueDateParagraph);
 
         projectContainer.appendChild(todoContainer);
     }
