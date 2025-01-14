@@ -1,9 +1,39 @@
 import userRepository from "./user-repository";
-import showProjectDialog from "./project-dialog";
-import showTaskDialog from "./task-dialog";
+import Project from "./Project"
+
+// Elements used for creating a new project
+const dialogCreateProject = document.querySelector("#create_project_dialog");
+const buttonAddNewProject = document.querySelector("#button_add_new_project");
+const buttonCancelProject = document.querySelector("#button_cancel_new_project");
+
+// Elements for creating a new task
+const newTodoDialog = document.querySelector("#new_todo_dialog");
+const buttonAddNewTodo = document.querySelector("#button_add_new_todo");
+const buttonCancelNewTodo = document.querySelector("#button_cancel_new_todo");
+
+// Elements used for editing a task
+const editTaskDialog = document.querySelector("#edit_task_dialog");
+const editTitleInput = document.querySelector("#edit_todo_title_input");
+const editDescriptionInput = document.querySelector("#edit_todo_description_input");
+const editDueDateInput = document.querySelector("#edit_todo_due_date_input");
+const editPriorityDropDown = document.querySelector("#edit_priority_drop_down");
 
 const projectList = userRepository.getProjects();
+let selectedProject = "";
 let selectedTask = "";
+
+buttonAddNewProject.addEventListener("click", () => {
+    const projectTitleInput = document.querySelector("#project_title_input").value;
+    const projectDescriptionInput = document.querySelector("#project_description_input").value;
+    const newProject = Project(projectTitleInput, projectDescriptionInput);
+    userRepository.createNewProject(newProject);
+    updateDisplay();
+    dialogCreateProject.close();
+});
+
+buttonCancelProject.addEventListener("click", () => {
+    dialogCreateProject.close();
+});
 
 export default function updateDisplay() {
     const projectDisplay = document.querySelector("#main_project_container");
@@ -27,7 +57,8 @@ export default function updateDisplay() {
         currentProjectAddTaskButton.textContent = "Add task";
     
         currentProjectAddTaskButton.addEventListener("click", () => {
-            showTaskDialog(currentProject.title);
+            selectedProject = currentProject.title;
+            newTodoDialog.show();
         });
 
         projectHeader.appendChild(currentProjectAddTaskButton);
@@ -79,15 +110,24 @@ function displayTasks(todoList, projectContainer) {
         projectContainer.appendChild(todoContainer);
     }
 }
+    
+buttonAddNewTodo.addEventListener("click", () => {
+    const todoTitle = document.querySelector("#todo_title_input").value;
+    const todoDescription = document.querySelector("#todo_description_input").value;
+    const todoDueDate = document.querySelector("#todo_due_date_input").value;
+    const priority = document.querySelector("#priority_drop_down").value;
+    userRepository.createNewTask(todoTitle, todoDescription, todoDueDate, priority, selectedProject);
 
+    updateDisplay();
+    newTodoDialog.close();
+});
+
+
+buttonCancelNewTodo.addEventListener("click", () => {
+    newTodoDialog.close(); 
+});
 
 function handleTaskClicked(task) {
-    const editTaskDialog = document.querySelector("#edit_task_dialog");
-    const editTitleInput = document.querySelector("#edit_todo_title_input");
-    const editDescriptionInput = document.querySelector("#edit_todo_description_input");
-    const editDueDateInput = document.querySelector("#edit_todo_due_date_input");
-    const editPriorityDropDown = document.querySelector("#edit_priority_drop_down");
-
     editTitleInput.value = task.getTitle();
     editDescriptionInput.value = task.getDescription();
     editDueDateInput.value = task.getDueDate();
@@ -108,10 +148,11 @@ buttonCancelEditTask.addEventListener("click", () => {
 
 const buttonCreateProject = document.querySelector("#button_create_project");
 buttonCreateProject.addEventListener("click", () => {
-    showProjectDialog();
+    dialogCreateProject.show();
 });
 
 const newTodoButton = document.querySelector("#new_todo_button");
 newTodoButton.addEventListener("click", () => {
-    showTaskDialog();
+    selectedProject = "Default Project"
+    newTodoDialog.show();
 });
